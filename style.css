@@ -1,0 +1,860 @@
+/* ==========================================================================
+   POKÉSTORE - FOLHA DE ESTILOS (CSS3)
+   Template Didático de E-Commerce para Aulas de Programação
+   Identidade Visual: Paleta Clássica do Desenho Pokémon
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   1. VARIÁVEIS DE CORES E CONFIGURAÇÕES GLOBAIS
+   -------------------------------------------------------------------------- */
+:root {
+    /* Paleta Oficial Inspirada no Anime Pokémon */
+    --pokemon-yellow: #FFCB05;       /* Amarelo Pokémon (Destaques, Logo, Hover) */
+    --pokemon-yellow-dark: #E6B500;  /* Amarelo escurecido para sombras/bordas */
+    --pokemon-blue: #3466AF;         /* Azul Pokémon (Header, Títulos, Ações Principais) */
+    --pokemon-blue-dark: #254b85;    /* Azul escuro para hover de botões e detalhes */
+    --pokeball-red: #EE1515;         /* Vermelho Pokébola (Alertas, Remoção, Detalhes) */
+    --pokeball-red-dark: #C40E0E;    /* Vermelho escuro para hover */
+
+    /* Cores Neutras de Interface */
+    --bg-page: #F2F2F2;              /* Fundo geral da página (Cinza Claro) */
+    --bg-card: #FFFFFF;              /* Fundo dos cards e painéis (Branco) */
+    --text-primary: #333333;         /* Cor principal dos textos (Cinza Escuro) */
+    --text-muted: #666666;           /* Textos secundários e legendas */
+    --border-color: #E0E0E0;         /* Linhas divisórias e bordas suaves */
+
+    /* Cores dos Tipos de Pokémon (Badges / Tags) */
+    --type-electric: #F8D030;
+    --type-fire: #F08030;
+    --type-water: #6890F0;
+    --type-grass: #78C850;
+    --type-ghost: #705898;
+    --type-psychic: #F85888;
+    --type-normal: #A8A878;
+
+    /* Tipografia e Dimensões */
+    --font-primary: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+    --border-radius: 12px;
+    --card-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    --card-shadow-hover: 0 10px 24px rgba(52, 102, 175, 0.2);
+    --transition: all 0.25s ease-in-out;
+}
+
+/* --------------------------------------------------------------------------
+   2. RESET E REGRAS BÁSICAS
+   -------------------------------------------------------------------------- */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: var(--font-primary);
+    background-color: var(--bg-page);
+    color: var(--text-primary);
+    line-height: 1.6;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+ul {
+    list-style: none;
+}
+
+img {
+    max-width: 100%;
+    display: block;
+}
+
+/* Container centralizador */
+.container {
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 15px;
+}
+
+/* --------------------------------------------------------------------------
+   3. CABEÇALHO (HEADER) E NAVEGAÇÃO
+   -------------------------------------------------------------------------- */
+.header {
+    background-color: var(--pokemon-blue);
+    border-bottom: 4px solid var(--pokemon-yellow);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+.header-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 16px 15px;
+}
+
+/* Logo da Loja */
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: #FFFFFF;
+    font-size: 1.6rem;
+    font-weight: 800;
+    letter-spacing: 0.5px;
+}
+
+.logo-icon {
+    width: 36px;
+    height: 36px;
+    fill: var(--pokeball-red);
+    stroke: #FFFFFF;
+    stroke-width: 2;
+    transition: var(--transition);
+}
+
+.logo:hover .logo-icon {
+    transform: rotate(360deg);
+}
+
+.logo span {
+    color: var(--pokemon-yellow);
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+/* Navegação e Links */
+.nav-menu {
+    display: flex;
+    align-items: center;
+    gap: 25px;
+}
+
+.nav-link {
+    color: #FFFFFF;
+    font-weight: 600;
+    font-size: 1rem;
+    padding: 6px 12px;
+    border-radius: 6px;
+    transition: var(--transition);
+}
+
+.nav-link:hover,
+.nav-link.active {
+    color: var(--pokemon-yellow);
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+/* Botão do Carrinho no Header */
+.cart-button {
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background-color: var(--pokemon-yellow);
+    color: var(--pokemon-blue-dark);
+    font-weight: 700;
+    padding: 8px 18px;
+    border-radius: 20px;
+    border: 2px solid #FFFFFF;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+    transition: var(--transition);
+}
+
+.cart-button:hover {
+    background-color: #FFFFFF;
+    color: var(--pokemon-blue);
+    transform: scale(1.04);
+}
+
+.cart-icon {
+    width: 20px;
+    height: 20px;
+}
+
+/* Contador Estático do Carrinho */
+.cart-badge {
+    background-color: var(--pokeball-red);
+    color: #FFFFFF;
+    font-size: 0.75rem;
+    font-weight: 800;
+    min-width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2px;
+    border: 1px solid #FFFFFF;
+}
+
+/* --------------------------------------------------------------------------
+   4. SEÇÃO HERO / BANNER DE APRESENTAÇÃO
+   -------------------------------------------------------------------------- */
+.hero-banner {
+    background: linear-gradient(135deg, var(--pokemon-blue) 0%, #1e457e 100%);
+    color: #FFFFFF;
+    padding: 40px 0;
+    text-align: center;
+    margin-bottom: 30px;
+    border-bottom: 2px solid var(--border-color);
+}
+
+.hero-banner h1 {
+    font-size: 2.2rem;
+    margin-bottom: 8px;
+    color: var(--pokemon-yellow);
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4);
+}
+
+.hero-banner p {
+    font-size: 1.1rem;
+    opacity: 0.95;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+/* --------------------------------------------------------------------------
+   5. SEÇÃO DE FILTROS E BUSCA (INDEX.HTML)
+   -------------------------------------------------------------------------- */
+.filters-section {
+    background-color: var(--bg-card);
+    padding: 24px;
+    border-radius: var(--border-radius);
+    box-shadow: var(--card-shadow);
+    margin-bottom: 35px;
+    border-left: 6px solid var(--pokemon-blue);
+}
+
+.filters-header {
+    margin-bottom: 15px;
+}
+
+.filters-header h2 {
+    font-size: 1.3rem;
+    color: var(--pokemon-blue);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.filters-form {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr;
+    gap: 16px;
+    align-items: flex-end;
+}
+
+.filter-group {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.filter-group label {
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.filter-input,
+.filter-select {
+    width: 100%;
+    padding: 10px 14px;
+    border: 2px solid var(--border-color);
+    border-radius: 8px;
+    font-size: 0.95rem;
+    font-family: inherit;
+    color: var(--text-primary);
+    background-color: #FAFAFA;
+    transition: var(--transition);
+}
+
+.filter-input:focus,
+.filter-select:focus {
+    outline: none;
+    border-color: var(--pokemon-blue);
+    background-color: #FFFFFF;
+    box-shadow: 0 0 0 3px rgba(52, 102, 175, 0.15);
+}
+
+/* --------------------------------------------------------------------------
+   6. VITRINE DE PRODUTOS E CARDS ESTILO COLEÇÃO
+   -------------------------------------------------------------------------- */
+.catalog-section {
+    margin-bottom: 50px;
+}
+
+.section-title {
+    font-size: 1.6rem;
+    color: var(--pokemon-blue);
+    margin-bottom: 25px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 2px solid var(--border-color);
+    padding-bottom: 10px;
+}
+
+.section-title .item-count {
+    font-size: 0.95rem;
+    color: var(--text-muted);
+    font-weight: 500;
+}
+
+/* Grid de Produtos */
+.products-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 25px;
+}
+
+/* REQUISITO OBRIGATÓRIO: CLASSE EXATA .card
+   Estilizado como uma "Carta Colecionável de Pokémon" */
+.card {
+    background-color: var(--bg-card);
+    border-radius: var(--border-radius);
+    border: 2px solid #E2E8F0;
+    box-shadow: var(--card-shadow);
+    padding: 18px;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    overflow: hidden;
+    transition: var(--transition);
+}
+
+.card:hover {
+    transform: translateY(-6px);
+    box-shadow: var(--card-shadow-hover);
+    border-color: var(--pokemon-yellow);
+}
+
+/* Número da Pokédex no topo do card */
+.card-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 12px;
+}
+
+.card-number {
+    font-size: 0.85rem;
+    font-weight: 800;
+    color: var(--text-muted);
+}
+
+/* Badges de Tipo do Pokémon */
+.card-type {
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    padding: 3px 10px;
+    border-radius: 12px;
+    color: #FFFFFF;
+    letter-spacing: 0.5px;
+}
+
+.type-electric { background-color: var(--type-electric); color: #333333; }
+.type-fire     { background-color: var(--type-fire); }
+.type-water    { background-color: var(--type-water); }
+.type-grass    { background-color: var(--type-grass); }
+.type-ghost    { background-color: var(--type-ghost); }
+.type-psychic  { background-color: var(--type-psychic); }
+.type-normal   { background-color: var(--type-normal); }
+
+/* Moldura e Imagem do Pokémon */
+.card-image-wrapper {
+    background: radial-gradient(circle, #F8FAFC 0%, #E9EFF6 100%);
+    border-radius: 10px;
+    padding: 15px;
+    margin-bottom: 16px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 180px;
+    border: 1px solid #EAEAEA;
+    transition: var(--transition);
+}
+
+.card:hover .card-image-wrapper {
+    background: radial-gradient(circle, #FFFDEB 0%, #F5F9FF 100%);
+}
+
+.card-image {
+    max-height: 150px;
+    width: auto;
+    object-fit: contain;
+    filter: drop-shadow(0 6px 8px rgba(0, 0, 0, 0.12));
+    transition: var(--transition);
+}
+
+.card:hover .card-image {
+    transform: scale(1.08);
+}
+
+/* Informações do Pokémon no Card */
+.card-info {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.card-title {
+    font-size: 1.25rem;
+    font-weight: 800;
+    color: var(--pokemon-blue);
+    margin-bottom: 4px;
+}
+
+.card-description {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    margin-bottom: 16px;
+    line-height: 1.4;
+}
+
+/* Preço e Botão de Ação */
+.card-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: auto;
+    padding-top: 14px;
+    border-top: 1px dashed var(--border-color);
+}
+
+.card-price {
+    font-size: 1.25rem;
+    font-weight: 800;
+    color: var(--text-primary);
+}
+
+.card-price span {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    font-weight: 600;
+}
+
+/* --------------------------------------------------------------------------
+   7. BOTÕES PADRONIZADOS (BOTÃO PRIMÁRIO, SECUNDÁRIO, REMOVER)
+   -------------------------------------------------------------------------- */
+.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    padding: 10px 18px;
+    font-size: 0.9rem;
+    font-weight: 700;
+    border-radius: 8px;
+    cursor: pointer;
+    border: none;
+    transition: var(--transition);
+    text-align: center;
+}
+
+/* Botão de Adicionar ao Carrinho (Azul Pokémon com hover em Amarelo) */
+.btn-primary {
+    background-color: var(--pokemon-blue);
+    color: #FFFFFF;
+    box-shadow: 0 3px 6px rgba(52, 102, 175, 0.3);
+}
+
+.btn-primary:hover {
+    background-color: var(--pokemon-yellow);
+    color: var(--pokemon-blue-dark);
+    box-shadow: 0 4px 10px rgba(255, 203, 5, 0.4);
+    transform: translateY(-2px);
+}
+
+/* Botão de Ação Crítica / Remover do Carrinho (Vermelho Pokébola) */
+.btn-remove {
+    background-color: transparent;
+    color: var(--pokeball-red);
+    border: 1.5px solid var(--pokeball-red);
+    padding: 6px 12px;
+    font-size: 0.85rem;
+}
+
+.btn-remove:hover {
+    background-color: var(--pokeball-red);
+    color: #FFFFFF;
+    box-shadow: 0 3px 8px rgba(238, 21, 21, 0.3);
+}
+
+/* Botão de Finalizar Compra */
+.btn-checkout {
+    background-color: #2E7D32; /* Verde confirmação */
+    color: #FFFFFF;
+    width: 100%;
+    padding: 14px 20px;
+    font-size: 1.05rem;
+    box-shadow: 0 4px 10px rgba(46, 125, 50, 0.3);
+}
+
+.btn-checkout:hover {
+    background-color: #256628;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 14px rgba(46, 125, 50, 0.4);
+}
+
+/* Botão Secundário / Voltar às Compras */
+.btn-secondary {
+    background-color: transparent;
+    color: var(--pokemon-blue);
+    border: 2px solid var(--pokemon-blue);
+    width: 100%;
+    padding: 10px;
+}
+
+.btn-secondary:hover {
+    background-color: var(--pokemon-blue);
+    color: #FFFFFF;
+}
+
+/* --------------------------------------------------------------------------
+   8. PÁGINA DO CARRINHO (CART.HTML)
+   -------------------------------------------------------------------------- */
+.cart-page-header {
+    margin: 30px 0 25px 0;
+}
+
+.cart-page-header h1 {
+    font-size: 2rem;
+    color: var(--pokemon-blue);
+}
+
+.cart-layout {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 30px;
+    align-items: flex-start;
+    margin-bottom: 60px;
+}
+
+/* Lista de Itens do Carrinho */
+.cart-items-container {
+    background-color: var(--bg-card);
+    border-radius: var(--border-radius);
+    padding: 24px;
+    box-shadow: var(--card-shadow);
+    border: 1px solid var(--border-color);
+}
+
+.cart-items-list {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+/* Item Individual do Carrinho */
+.cart-item {
+    display: grid;
+    grid-template-columns: 80px 1.5fr 1fr 1fr auto;
+    align-items: center;
+    gap: 18px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.cart-item:last-child {
+    border-bottom: none;
+    padding-bottom: 0;
+}
+
+.cart-item-image {
+    width: 80px;
+    height: 80px;
+    background-color: #F8FAFC;
+    border-radius: 8px;
+    padding: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid #EAEAEA;
+}
+
+.cart-item-image img {
+    max-height: 100%;
+    object-fit: contain;
+}
+
+.cart-item-details {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.cart-item-name {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--pokemon-blue);
+}
+
+.cart-item-type {
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: var(--text-muted);
+    text-transform: uppercase;
+}
+
+.cart-item-price {
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--text-primary);
+}
+
+.cart-item-price small {
+    display: block;
+    font-size: 0.75rem;
+    font-weight: 500;
+    color: var(--text-muted);
+}
+
+/* Controle de Quantidade */
+.cart-item-quantity {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.cart-item-quantity label {
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: var(--text-muted);
+}
+
+.quantity-input {
+    width: 65px;
+    padding: 6px 8px;
+    border: 2px solid var(--border-color);
+    border-radius: 6px;
+    font-size: 0.95rem;
+    font-weight: 700;
+    text-align: center;
+    color: var(--text-primary);
+    background-color: #FAFAFA;
+}
+
+.quantity-input:focus {
+    outline: none;
+    border-color: var(--pokemon-blue);
+}
+
+/* Painel de Resumo do Pedido (Aside) */
+.order-summary {
+    background-color: var(--bg-card);
+    border-radius: var(--border-radius);
+    padding: 24px;
+    box-shadow: var(--card-shadow);
+    border: 2px solid var(--pokemon-blue);
+    position: sticky;
+    top: 90px;
+}
+
+.summary-title {
+    font-size: 1.3rem;
+    color: var(--pokemon-blue);
+    padding-bottom: 12px;
+    margin-bottom: 16px;
+    border-bottom: 2px solid var(--pokemon-yellow);
+}
+
+.summary-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 12px;
+    font-size: 0.95rem;
+    color: var(--text-muted);
+}
+
+.summary-row.discount {
+    color: #2E7D32;
+    font-weight: 600;
+}
+
+.summary-divider {
+    height: 1px;
+    background-color: var(--border-color);
+    margin: 16px 0;
+}
+
+.summary-row.total {
+    font-size: 1.35rem;
+    font-weight: 800;
+    color: var(--text-primary);
+    margin-bottom: 24px;
+}
+
+.summary-row.total span:last-child {
+    color: var(--pokemon-blue);
+}
+
+.summary-actions {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+/* --------------------------------------------------------------------------
+   9. RODAPÉ (FOOTER)
+   -------------------------------------------------------------------------- */
+.footer {
+    background-color: #222222;
+    color: #EEEEEE;
+    margin-top: auto;
+    border-top: 4px solid var(--pokeball-red);
+}
+
+.footer-main {
+    padding: 40px 0 25px 0;
+}
+
+.footer-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr;
+    gap: 30px;
+    margin-bottom: 30px;
+}
+
+.footer-column h3 {
+    color: var(--pokemon-yellow);
+    font-size: 1.1rem;
+    margin-bottom: 14px;
+}
+
+.footer-column p {
+    font-size: 0.9rem;
+    color: #AAAAAA;
+    line-height: 1.5;
+}
+
+.footer-links {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.footer-links a {
+    font-size: 0.9rem;
+    color: #CCCCCC;
+    transition: var(--transition);
+}
+
+.footer-links a:hover {
+    color: var(--pokemon-yellow);
+    padding-left: 4px;
+}
+
+.footer-bottom {
+    background-color: #171717;
+    padding: 16px 0;
+    text-align: center;
+    font-size: 0.85rem;
+    color: #888888;
+    border-top: 1px solid #333333;
+}
+
+/* --------------------------------------------------------------------------
+   10. RESPONSIVIDADE (MEDIA QUERIES)
+   -------------------------------------------------------------------------- */
+
+/* Tablets e Telas Médias (<= 992px) */
+@media (max-width: 992px) {
+    .filters-form {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .filter-group:first-child {
+        grid-column: span 2;
+    }
+
+    .cart-layout {
+        grid-template-columns: 1fr;
+    }
+
+    .order-summary {
+        position: static;
+    }
+
+    .footer-grid {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+/* Dispositivos Móveis (<= 768px) */
+@media (max-width: 768px) {
+    .header-container {
+        flex-direction: column;
+        gap: 15px;
+        text-align: center;
+    }
+
+    .nav-menu {
+        gap: 15px;
+    }
+
+    .hero-banner h1 {
+        font-size: 1.7rem;
+    }
+
+    .filters-form {
+        grid-template-columns: 1fr;
+    }
+
+    .filter-group:first-child {
+        grid-column: span 1;
+    }
+
+    .products-grid {
+        grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+        gap: 18px;
+    }
+
+    /* Layout do item do carrinho em formato vertical para celulares */
+    .cart-item {
+        grid-template-columns: 70px 1fr;
+        grid-template-areas:
+            "img info"
+            "img price"
+            "qty remove";
+        gap: 10px;
+        position: relative;
+    }
+
+    .cart-item-image {
+        grid-area: img;
+    }
+
+    .cart-item-details {
+        grid-area: info;
+    }
+
+    .cart-item-price {
+        grid-area: price;
+    }
+
+    .cart-item-quantity {
+        grid-area: qty;
+    }
+
+    .cart-item .btn-remove {
+        grid-area: remove;
+        justify-self: end;
+    }
+
+    .footer-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+}

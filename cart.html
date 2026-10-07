@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PokéStore - Carrinho de Compras</title>
+    <!-- Folha de Estilos Global -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- =====================================================================
+         CABEÇALHO DA LOJA (HEADER)
+         ===================================================================== -->
+    <header class="header">
+        <div class="container header-container">
+            <!-- Logotipo com ícone de Pokébola -->
+            <a href="index.html" class="logo" title="PokéStore - Página Inicial">
+                <svg class="logo-icon" viewBox="0 0 24 24" aria-hidden="true">
+                    <circle cx="12" cy="12" r="10" />
+                    <line x1="2" y1="12" x2="22" y2="12" stroke-width="2" />
+                    <circle cx="12" cy="12" r="3" fill="#FFFFFF" />
+                </svg>
+                Poké<span>Store</span>
+            </a>
+
+            <!-- Menu de Navegação -->
+            <nav class="nav" aria-label="Navegação principal">
+                <ul class="nav-menu">
+                    <li><a href="index.html" class="nav-link">Catálogo</a></li>
+                    <li><a href="cart.html" class="nav-link active">Carrinho</a></li>
+                </ul>
+            </nav>
+
+            <!-- Acesso Rápido ao Carrinho de Compras -->
+            <a href="cart.html" class="cart-button" title="Você está no carrinho">
+                <svg class="cart-icon" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" />
+                </svg>
+                <span>Carrinho</span>
+                <!-- Contador de Itens -->
+                <span class="cart-badge" id="cart-counter">3</span>
+            </a>
+        </div>
+    </header>
+
+    <!-- =====================================================================
+         CONTEÚDO PRINCIPAL (MAIN)
+         ===================================================================== -->
+    <main class="container">
+
+        <!-- Título da Página do Carrinho -->
+        <div class="cart-page-header">
+            <h1>🛒 Seu Carrinho de Treinador</h1>
+        </div>
+
+        <!-- LAYOUT DO CARRINHO (LISTA DE ITENS + RESUMO LATERAL) -->
+        <div class="cart-layout">
+
+            <!-- SEÇÃO DA LISTA DE PRODUTOS NO CARRINHO -->
+            <!-- DICA PARA OS ALUNOS: Esta lista será manipulada por JS (adicionar, alterar quantidade, remover) -->
+            <section class="cart-items-container" aria-label="Itens selecionados">
+                <div class="cart-items-list" id="cart-items-list">
+
+                    <!-- ITEM 1: PIKACHU -->
+                    <article class="cart-item" data-id="25">
+                        <div class="cart-item-image">
+                            <img 
+                                src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/25.png" 
+                                alt="Pikachu" 
+                                loading="lazy"
+                            >
+                        </div>
+                        <div class="cart-item-details">
+                            <h3 class="cart-item-name">Pikachu</h3>
+                            <span class="cart-item-type">Tipo: Elétrico</span>
+                        </div>
+                        <div class="cart-item-price">
+                            <small>Preço unitário:</small>
+                            R$ 350,00
+                        </div>
+                        <div class="cart-item-quantity">
+                            <label for="qty-25">Qtd:</label>
+                            <input 
+                                type="number" 
+                                id="qty-25" 
+                                class="quantity-input" 
+                                value="1" 
+                                min="1" 
+                                max="99"
+                            >
+                        </div>
+                        <!-- Botão com o Vermelho Pokébola da paleta -->
+                        <button type="button" class="btn btn-remove" title="Remover Pikachu do carrinho">
+                            Remover
+                        </button>
+                    </article>
+
+                    <!-- ITEM 2: CHARMANDER -->
+                    <article class="cart-item" data-id="4">
+                        <div class="cart-item-image">
+                            <img 
+                                src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/4.png" 
+                                alt="Charmander" 
+                                loading="lazy"
+                            >
+                        </div>
+                        <div class="cart-item-details">
+                            <h3 class="cart-item-name">Charmander</h3>
+                            <span class="cart-item-type">Tipo: Fogo</span>
+                        </div>
+                        <div class="cart-item-price">
+                            <small>Preço unitário:</small>
+                            R$ 420,00
+                        </div>
+                        <div class="cart-item-quantity">
+                            <label for="qty-4">Qtd:</label>
+                            <input 
+                                type="number" 
+                                id="qty-4" 
+                                class="quantity-input" 
+                                value="1" 
+                                min="1" 
+                                max="99"
+                            >
+                        </div>
+                        <button type="button" class="btn btn-remove" title="Remover Charmander do carrinho">
+                            Remover
+                        </button>
+                    </article>
+
+                    <!-- ITEM 3: GENGAR -->
+                    <article class="cart-item" data-id="94">
+                        <div class="cart-item-image">
+                            <img 
+                                src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/94.png" 
+                                alt="Gengar" 
+                                loading="lazy"
+                            >
+                        </div>
+                        <div class="cart-item-details">
+                            <h3 class="cart-item-name">Gengar</h3>
+                            <span class="cart-item-type">Tipo: Fantasma</span>
+                        </div>
+                        <div class="cart-item-price">
+                            <small>Preço unitário:</small>
+                            R$ 520,00
+                        </div>
+                        <div class="cart-item-quantity">
+                            <label for="qty-94">Qtd:</label>
+                            <input 
+                                type="number" 
+                                id="qty-94" 
+                                class="quantity-input" 
+                                value="1" 
+                                min="1" 
+                                max="99"
+                            >
+                        </div>
+                        <button type="button" class="btn btn-remove" title="Remover Gengar do carrinho">
+                            Remover
+                        </button>
+                    </article>
+
+                </div>
+            </section>
+
+            <!-- PAINEL LATERAL: RESUMO DO PEDIDO -->
+            <aside class="order-summary" aria-label="Resumo do Pedido">
+                <h2 class="summary-title">Resumo do Pedido</h2>
+
+                <!-- Subtotal -->
+                <div class="summary-row">
+                    <span>Subtotal (3 itens):</span>
+                    <span id="summary-subtotal">R$ 1.290,00</span>
+                </div>
+
+                <!-- Descontos -->
+                <div class="summary-row discount">
+                    <span>Desconto Liga Pokémon (10%):</span>
+                    <span id="summary-discount">- R$ 129,00</span>
+                </div>
+
+                <!-- Frete -->
+                <div class="summary-row">
+                    <span>Frete Pidgey Express:</span>
+                    <span>Grátis</span>
+                </div>
+
+                <div class="summary-divider"></div>
+
+                <!-- Total Final -->
+                <div class="summary-row total">
+                    <span>Total a Pagar:</span>
+                    <span id="summary-total">R$ 1.161,00</span>
+                </div>
+
+                <!-- Botões de Ação -->
+                <div class="summary-actions">
+                    <button type="button" class="btn btn-checkout">
+                        Finalizar Compra
+                    </button>
+                    <a href="index.html" class="btn btn-secondary">
+                        Continuar Comprando
+                    </a>
+                </div>
+            </aside>
+
+        </div>
+
+    </main>
+
+    <!-- =====================================================================
+         RODAPÉ (FOOTER)
+         ===================================================================== -->
+    <footer class="footer">
+        <div class="container footer-main">
+            <div class="footer-grid">
+                <!-- Informações da Loja -->
+                <div class="footer-column">
+                    <h3>PokéStore Brasil</h3>
+                    <p>O melhor centro de distribuição de Pokémon para Treinadores de todas as regiões. Produtos 100% autênticos e licenciados pela Liga Pokémon.</p>
+                </div>
+
+                <!-- Links Rápidos -->
+                <div class="footer-column">
+                    <h3>Links Rápidos</h3>
+                    <ul class="footer-links">
+                        <li><a href="index.html">Catálogo Completo</a></li>
+                        <li><a href="cart.html">Meu Carrinho</a></li>
+                        <li><a href="#">Termos da Liga Pokémon</a></li>
+                        <li><a href="#">Dúvidas Frequentes</a></li>
+                    </ul>
+                </div>
+
+                <!-- Atendimento -->
+                <div class="footer-column">
+                    <h3>Atendimento</h3>
+                    <p>Central de Treinadores: (11) 99999-9999</p>
+                    <p>E-mail: contato@pokestore.com.br</p>
+                    <p>Cidade de Pallet - Região de Kanto</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <div class="container">
+                <p>&copy; 2026 PokéStore. Template didático para fins educacionais. Pokémon e seus personagens são marcas registradas da Nintendo / Game Freak / Creatures.</p>
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>

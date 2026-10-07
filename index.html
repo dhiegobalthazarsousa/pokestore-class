@@ -1,19 +1,358 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>PokéStore - Catálogo de Pokémon</title>
+    <!-- Folha de Estilos Global -->
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <header>
 
+    <!-- =====================================================================
+         CABEÇALHO DA LOJA (HEADER)
+         ===================================================================== -->
+    <header class="header">
+        <div class="container header-container">
+            <!-- Logotipo com ícone temático de Pokébola em SVG -->
+            <a href="index.html" class="logo" title="PokéStore - Página Inicial">
+                <svg class="logo-icon" viewBox="0 0 24 24" aria-hidden="true">
+                    <circle cx="12" cy="12" r="10" />
+                    <line x1="2" y1="12" x2="22" y2="12" stroke-width="2" />
+                    <circle cx="12" cy="12" r="3" fill="#FFFFFF" />
+                </svg>
+                Poké<span>Store</span>
+            </a>
+
+            <!-- Menu de Navegação -->
+            <nav class="nav" aria-label="Navegação principal">
+                <ul class="nav-menu">
+                    <li><a href="index.html" class="nav-link active">Catálogo</a></li>
+                    <li><a href="cart.html" class="nav-link">Carrinho</a></li>
+                </ul>
+            </nav>
+
+            <!-- Acesso Rápido ao Carrinho de Compras -->
+            <a href="cart.html" class="cart-button" title="Ver carrinho de compras">
+                <svg class="cart-icon" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" />
+                </svg>
+                <span>Carrinho</span>
+                <!-- NOTA PARA OS ALUNOS: O número dentro deste span poderá ser atualizado dinamicamente via JS -->
+                <span class="cart-badge" id="cart-counter">3</span>
+            </a>
+        </div>
     </header>
-    <main>
+
+    <!-- =====================================================================
+         BANNER PRINCIPAL (HERO)
+         ===================================================================== -->
+    <section class="hero-banner">
+        <div class="container">
+            <h1>Temos Que Pegar Todos!</h1>
+            <p>Escolha seus Pokémon favoritos para a sua equipe e receba sua Pokébola com entrega rápida em toda Kanto!</p>
+        </div>
+    </section>
+
+    <!-- =====================================================================
+         CONTEÚDO PRINCIPAL (MAIN)
+         ===================================================================== -->
+    <main class="container">
+
+        <!-- SEÇÃO DE FILTROS E BUSCA -->
+        <!-- NOTA PARA OS ALUNOS: Os elementos desta seção servirão para implementar a lógica de busca e filtro -->
+        <section class="filters-section" aria-label="Filtros de Produtos">
+            <div class="filters-header">
+                <h2>🔍 Encontre seu Pokémon</h2>
+            </div>
+            <form class="filters-form" onsubmit="return false;">
+                <!-- Campo de busca por nome -->
+                <div class="filter-group">
+                    <label for="search-input">Nome do Pokémon</label>
+                    <input 
+                        type="text" 
+                        id="search-input" 
+                        class="filter-input" 
+                        placeholder="Ex: Pikachu, Charmander..." 
+                        autocomplete="off"
+                    >
+                </div>
+
+                <!-- Filtro por tipo/elemento -->
+                <div class="filter-group">
+                    <label for="type-select">Filtrar por Tipo</label>
+                    <select id="type-select" class="filter-select">
+                        <option value="all">Todos os Tipos</option>
+                        <option value="electric">Elétrico</option>
+                        <option value="fire">Fogo</option>
+                        <option value="water">Água</option>
+                        <option value="grass">Planta</option>
+                        <option value="ghost">Fantasma</option>
+                        <option value="psychic">Psíquico</option>
+                        <option value="normal">Normal</option>
+                    </select>
+                </div>
+
+                <!-- Ordenação de preços -->
+                <div class="filter-group">
+                    <label for="order-select">Ordenar por</label>
+                    <select id="order-select" class="filter-select">
+                        <option value="relevance">Mais Relevantes</option>
+                        <option value="price-asc">Menor Preço</option>
+                        <option value="price-desc">Maior Preço</option>
+                    </select>
+                </div>
+            </form>
+        </section>
+
+        <!-- SEÇÃO DE VITRINE DE PRODUTOS -->
+        <section class="catalog-section" aria-label="Vitrine de Pokémon">
+            <div class="section-title">
+                <h2>Pokémons Disponíveis</h2>
+                <span class="item-count">Exibindo 8 de 151 Pokémon</span>
+            </div>
+
+            <!-- CONTAINER ONDE OS PRODUTOS SÃO RENDERIZADOS -->
+            <!-- DICA DIDÁTICA: Na aula de lógica, os alunos podem limpar ou preencher esta div dinamicamente -->
+            <div class="products-grid" id="produtos-container">
+
+                <!-- CARD 1: PIKACHU -->
+                <!-- REQUISITO OBRIGATÓRIO: div com a classe exata .card -->
+                <div class="card" data-id="25" data-type="electric">
+                    <div class="card-top">
+                        <span class="card-number">#025</span>
+                        <span class="card-type type-electric">Elétrico</span>
+                    </div>
+                    <div class="card-image-wrapper">
+                        <img 
+                            src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/25.png" 
+                            alt="Pikachu" 
+                            class="card-image"
+                            loading="lazy"
+                        >
+                    </div>
+                    <div class="card-info">
+                        <h3 class="card-title">Pikachu</h3>
+                        <p class="card-description">Quando vários desses Pokémon se reúnem, sua eletricidade pode causar tempestades.</p>
+                    </div>
+                    <div class="card-footer">
+                        <p class="card-price"><span>R$</span> 350,00</p>
+                        <button type="button" class="btn btn-primary">Adicionar ao Carrinho</button>
+                    </div>
+                </div>
+
+                <!-- CARD 2: CHARMANDER -->
+                <div class="card" data-id="4" data-type="fire">
+                    <div class="card-top">
+                        <span class="card-number">#004</span>
+                        <span class="card-type type-fire">Fogo</span>
+                    </div>
+                    <div class="card-image-wrapper">
+                        <img 
+                            src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/4.png" 
+                            alt="Charmander" 
+                            class="card-image"
+                            loading="lazy"
+                        >
+                    </div>
+                    <div class="card-info">
+                        <h3 class="card-title">Charmander</h3>
+                        <p class="card-description">A chama na ponta de sua cauda indica suas emoções. Ela oscila quando ele está alegre.</p>
+                    </div>
+                    <div class="card-footer">
+                        <p class="card-price"><span>R$</span> 420,00</p>
+                        <button type="button" class="btn btn-primary">Adicionar ao Carrinho</button>
+                    </div>
+                </div>
+
+                <!-- CARD 3: SQUIRTLE -->
+                <div class="card" data-id="7" data-type="water">
+                    <div class="card-top">
+                        <span class="card-number">#007</span>
+                        <span class="card-type type-water">Água</span>
+                    </div>
+                    <div class="card-image-wrapper">
+                        <img 
+                            src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/7.png" 
+                            alt="Squirtle" 
+                            class="card-image"
+                            loading="lazy"
+                        >
+                    </div>
+                    <div class="card-info">
+                        <h3 class="card-title">Squirtle</h3>
+                        <p class="card-description">Recolhe-se em sua concha quando ameaçado e dispara jatos de água em alta pressão.</p>
+                    </div>
+                    <div class="card-footer">
+                        <p class="card-price"><span>R$</span> 400,00</p>
+                        <button type="button" class="btn btn-primary">Adicionar ao Carrinho</button>
+                    </div>
+                </div>
+
+                <!-- CARD 4: BULBASAUR -->
+                <div class="card" data-id="1" data-type="grass">
+                    <div class="card-top">
+                        <span class="card-number">#001</span>
+                        <span class="card-type type-grass">Planta</span>
+                    </div>
+                    <div class="card-image-wrapper">
+                        <img 
+                            src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/1.png" 
+                            alt="Bulbasaur" 
+                            class="card-image"
+                            loading="lazy"
+                        >
+                    </div>
+                    <div class="card-info">
+                        <h3 class="card-title">Bulbasaur</h3>
+                        <p class="card-description">Há uma semente de planta em suas costas desde o dia em que este Pokémon nasce.</p>
+                    </div>
+                    <div class="card-footer">
+                        <p class="card-price"><span>R$</span> 380,00</p>
+                        <button type="button" class="btn btn-primary">Adicionar ao Carrinho</button>
+                    </div>
+                </div>
+
+                <!-- CARD 5: GENGAR -->
+                <div class="card" data-id="94" data-type="ghost">
+                    <div class="card-top">
+                        <span class="card-number">#094</span>
+                        <span class="card-type type-ghost">Fantasma</span>
+                    </div>
+                    <div class="card-image-wrapper">
+                        <img 
+                            src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/94.png" 
+                            alt="Gengar" 
+                            class="card-image"
+                            loading="lazy"
+                        >
+                    </div>
+                    <div class="card-info">
+                        <h3 class="card-title">Gengar</h3>
+                        <p class="card-description">Esconde-se nas sombras das pessoas à noite para absorver o calor ao seu redor.</p>
+                    </div>
+                    <div class="card-footer">
+                        <p class="card-price"><span>R$</span> 520,00</p>
+                        <button type="button" class="btn btn-primary">Adicionar ao Carrinho</button>
+                    </div>
+                </div>
+
+                <!-- CARD 6: EEVEE -->
+                <div class="card" data-id="133" data-type="normal">
+                    <div class="card-top">
+                        <span class="card-number">#133</span>
+                        <span class="card-type type-normal">Normal</span>
+                    </div>
+                    <div class="card-image-wrapper">
+                        <img 
+                            src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/133.png" 
+                            alt="Eevee" 
+                            class="card-image"
+                            loading="lazy"
+                        >
+                    </div>
+                    <div class="card-info">
+                        <h3 class="card-title">Eevee</h3>
+                        <p class="card-description">Sua estrutura genética irregular permite que ele se adapte a vários ambientes.</p>
+                    </div>
+                    <div class="card-footer">
+                        <p class="card-price"><span>R$</span> 390,00</p>
+                        <button type="button" class="btn btn-primary">Adicionar ao Carrinho</button>
+                    </div>
+                </div>
+
+                <!-- CARD 7: SNORLAX -->
+                <div class="card" data-id="143" data-type="normal">
+                    <div class="card-top">
+                        <span class="card-number">#143</span>
+                        <span class="card-type type-normal">Normal</span>
+                    </div>
+                    <div class="card-image-wrapper">
+                        <img 
+                            src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/143.png" 
+                            alt="Snorlax" 
+                            class="card-image"
+                            loading="lazy"
+                        >
+                    </div>
+                    <div class="card-info">
+                        <h3 class="card-title">Snorlax</h3>
+                        <p class="card-description">Come cerca de 400 kg de comida por dia antes de adormecer por longos períodos.</p>
+                    </div>
+                    <div class="card-footer">
+                        <p class="card-price"><span>R$</span> 480,00</p>
+                        <button type="button" class="btn btn-primary">Adicionar ao Carrinho</button>
+                    </div>
+                </div>
+
+                <!-- CARD 8: MEWTWO -->
+                <div class="card" data-id="150" data-type="psychic">
+                    <div class="card-top">
+                        <span class="card-number">#150</span>
+                        <span class="card-type type-psychic">Psíquico</span>
+                    </div>
+                    <div class="card-image-wrapper">
+                        <img 
+                            src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/150.png" 
+                            alt="Mewtwo" 
+                            class="card-image"
+                            loading="lazy"
+                        >
+                    </div>
+                    <div class="card-info">
+                        <h3 class="card-title">Mewtwo</h3>
+                        <p class="card-description">Criado por manipulação genética. Seus poderes psíquicos superam qualquer outro ser.</p>
+                    </div>
+                    <div class="card-footer">
+                        <p class="card-price"><span>R$</span> 990,00</p>
+                        <button type="button" class="btn btn-primary">Adicionar ao Carrinho</button>
+                    </div>
+                </div>
+
+            </div>
+        </section>
 
     </main>
-    <footer>
-        
+
+    <!-- =====================================================================
+         RODAPÉ (FOOTER)
+         ===================================================================== -->
+    <footer class="footer">
+        <div class="container footer-main">
+            <div class="footer-grid">
+                <!-- Informações da Loja -->
+                <div class="footer-column">
+                    <h3>PokéStore Brasil</h3>
+                    <p>O melhor centro de distribuição de Pokémon para Treinadores de todas as regiões. Produtos 100% autênticos e licenciados pela Liga Pokémon.</p>
+                </div>
+
+                <!-- Links Rápidos -->
+                <div class="footer-column">
+                    <h3>Links Rápidos</h3>
+                    <ul class="footer-links">
+                        <li><a href="index.html">Catálogo Completo</a></li>
+                        <li><a href="cart.html">Meu Carrinho</a></li>
+                        <li><a href="#">Termos da Liga Pokémon</a></li>
+                        <li><a href="#">Dúvidas Frequentes</a></li>
+                    </ul>
+                </div>
+
+                <!-- Atendimento -->
+                <div class="footer-column">
+                    <h3>Atendimento</h3>
+                    <p>Central de Treinadores: (11) 99999-9999</p>
+                    <p>E-mail: contato@pokestore.com.br</p>
+                    <p>Cidade de Pallet - Região de Kanto</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <div class="container">
+                <p>&copy; 2026 PokéStore. Template didático para fins educacionais. Pokémon e seus personagens são marcas registradas da Nintendo / Game Freak / Creatures.</p>
+            </div>
+        </div>
     </footer>
+
 </body>
 </html>
